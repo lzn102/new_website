@@ -1,0 +1,96 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/normalize/8.0.0/normalize.css">
+    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
+    <script type="application/javascript" src="{% static 'blog/js/main.js' %}"></script>
+    {#自定义css样式#}
+    {% block customecss %}{% endblock %}
+    {#自定义页面名称#}
+    {% block pagename %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="site-name">
+            <h1>My Blog</h1>
+            <p>There are my website!</p>
+        </div>
+        <div class="nav clearfix">
+            <ul>
+                <li class="not-active"><a href="{% url 'blog:index' %}" onclick="change"><img src="{% static 'blog/img/shouye.ico' %}">首页</a></li>
+                <li class="not-active"><a href="{% url 'blog:sort' %}" onclick="change"><img src="{% static 'blog/img/guidang.ico' %}">归档</a></li>
+                <li class="not-active"><a href="{% url 'blog:aboutme' %}" onclick="change"><img src="{% static 'blog/img/guanyu.ico' %}">关于</a></li>
+                <li class="not-active"><a href="{% url 'blog:message' %}" onclick="change"><img src="{% static 'blog/img/liuyan.ico' %}">留言</a></li>
+{#                <li class="not-active"><a href="{% url 'blog:rss' %}" onclick="change"><img src="{% static 'blog/img/dingyue.ico' %}">订阅</a></li>#}
+            </ul>
+        </div>
+    </header>
+
+    <div class="contains clearfix">
+
+        {#自定义内容块#}
+        {% block content %}{% endblock %}
+
+        <div class="tagging clearfix">
+            <div class="search">
+                <form action="" method="post">
+                    <input type="text" name="search">
+                </form>
+            </div>
+            <div class="category">
+                <div class="tag-name"><img src="{% static 'blog/img/fenlei.ico' %}">类别</div>
+                {% for cate in category %}
+                <a href="{% url 'blog:search' cate.id %}">{{ cate.category }}</a>
+                {% endfor %}
+            </div>
+{#            <div class="tags">#}
+{#                <div class="tag-name"><img src="{% static 'blog/img/biaoqian.ico' %}">标签</div>#}
+{#                {% for tag in keywords %}#}
+{#                <a href="#">{{ tag.keywords }}</a>#}
+{#                {% endfor %}#}
+{#            </div>#}
+            <div class="hot-article">
+                <div class="tag-name"><img src="{% static 'blog/img/remenwenzhang.ico' %}">热门文章</div>
+                <ul>
+                    {% for hot in hot_article %}
+                    <li><a href="{% url 'blog:content' hot.id %}">{{ hot.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="friend-link">
+                <div class="tag-name"><img src="{% static 'blog/img/youqinglianjie.ico' %}">友链</div>
+                <ul>
+                    {% for link in friend_links %}
+                    <li><a href="{{ link.friend_link }}">{{ link.link_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    {#分页块#}
+    {% block pagination %}{% endblock %}
+    {#其他内容#}
+    {% block other %}{% endblock %}
+
+    <footer class="clearfix">
+        <div class="copyright">
+            <span>Copyright©2018-2020</span>
+            <span>website by lzn</span>
+        </div>
+        <div class="icon-link">
+            <ul>
+                <li><a href="#"><img src="" alt=""></a></li>
+                <li><a href="#"><img src="" alt=""></a></li>
+                <li><a href="#"><img src="" alt=""></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

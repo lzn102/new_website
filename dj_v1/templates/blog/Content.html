@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% load staticfiles %}
+{% load review_extras %}
+
+{% block pagename %}
+    <title>博客内容</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content clearfix">
+            <div class="info clearfix">
+                <h2><a>{{ article.title }}</a></h2>
+                <span><img src="{% static 'blog/img/rili.ico' %}">{{ article.add_time | date:"Y-F-j" }}</span>
+                <span>|</span>
+                <span><img src="{% static 'blog/img/fenlei.ico' %}"><a href="#">{{ article.articlecategory }}</a></span>
+                <article class="markdown-body">
+                    {{ article.content | safe | linebreaks }}
+                </article>
+            </div>
+{#            <div class="recording clearfix">#}
+{#                <div class="attribution">#}
+{#                    <ul>#}
+{#                        <li><a href="#"><img src="{% static 'blog/img/biaoqian.ico' %}">随笔</a></li>#}
+{#                        <li><a href="#"><img src="{% static 'blog/img/biaoqian.ico' %}">github</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="share">#}
+{#                    <a href="#"><img src="{% static 'blog/img/fenxiang.ico' %}">分享</a>#}
+{#                </div>#}
+{#            </div>#}
+
+            <div class="index clearfix">
+                <div class="before">
+                    <a href="{% url 'blog:before' article.id|add:'1' %}">←上篇</a>
+                </div>
+                <div class="after">
+                    <a href="{% url 'blog:before' article.id|add:'-1' %}">下篇→</a>
+                </div>
+            </div>
+        </div>
+{% endblock %}

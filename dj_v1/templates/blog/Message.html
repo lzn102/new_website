@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{#{% block customecss %}#}
+{#    <link rel="stylesheet" href="{% static 'blog/css/main.css' %}">#}
+{#{% endblock %}#}
+
+{% block pagename %}
+    <title>留言</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content clearfix">
+
+        {% for message in messages %}
+        <div>
+            <span>时间:{{ message.add_time }}</span>
+            <p>内容:{{ message.content }}</p>
+        </div>
+        {% endfor %}
+
+        <form action="{% url 'blog:message' %}" name="messages" method="post" class="user-message">
+            <label for=""></label>
+            <textarea name="message" id="" cols="95" rows="7" maxlength="500"></textarea>
+            <button type="submit" value="提交留言">提交留言</button>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}
+
+

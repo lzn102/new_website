@@ -1,0 +1,681 @@
+
+
+/*===========
+    工具样式
+ ============*/
+
+html{
+    /*设置整个html的字体大小以及颜色*/
+    font-size: 62.5%;
+    color: #222;
+}
+
+::selection{
+    /*设置页面文字被选中后的背景颜色*/
+    background-color: #b3d4fc;
+    text-shadow: none;
+}
+
+ul{
+    /*设置无序列表的样式*/
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    /*设置无序列表的样式*/
+    list-style: none;
+}
+
+a{
+    color: #222222;
+}
+
+/*使任何元素在父元素中居中显示*/
+.center-block{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/*使元素向右浮动*/
+/*!important 表示优先级最高*/
+.pull-right{
+    float: right !important;
+}
+
+/*使元素向左浮动*/
+.pull-left{
+    float: left !important;
+}
+
+/*文字靠右*/
+.text-right{
+    text-align: right !important;
+}
+
+/*文字靠左*/
+.text-left{
+    text-align: left !important;
+}
+
+/*文字居中*/
+.text-center{
+    text-align: center !important;
+}
+
+/*显示元素*/
+.show{
+    display: block !important;
+}
+
+/*隐藏元素且将其占用的空间消除*/
+.hide{
+    display: none !important;
+}
+
+/*隐藏元素但不消除其占用的空间*/
+.invisible{
+    visibility: hidden;
+}
+
+/*隐藏文本*/
+/*常用：当链接被图片代替后，加上隐藏的文本链接方便SEO搜索*/
+.text-hide{
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+
+/*
+    页面清除浮动方法有四种：
+        1.给父元素增加float
+               缺点：需要层层向父元素添加float，导致整个页面都是浮动的
+        2.给父元素增加overflow：auto或 hidden
+               缺点：
+               原理：让浮动元素回到父元素中，使父元素有高度
+        3.在父元素之后添加空标签div并设置clear：both
+               缺点：每个浮动的父元素后都需要加空标签，导致代码难以维护
+        4.使用css的after伪元素：
+               原理：添加一个看不见的伪元素（content="" display:block height:0）,使其清除浮动(clear:both),并隐藏它(hidden)
+               与方法3原理相同,但是不用在html中增加空标签
+        清除浮动的原理:
+            css概念: BFC
+            只要触发 BFC 就可以清除浮动
+            float(不为none)/
+            overflow(不为visible)/
+            display:table-cell,table-caption,inline-block/
+            position:fixed,absolute
+            等等属性都能触发 BFC ,从而清除浮动
+    */
+
+/*这种方法是第四种方法的改进版本,使用 display:table 触发BFC清除浮动*/
+/*设置before防止两个元素之间的margin间距合并(浏览器顶部空白奔溃)*/
+.clearfix:before,
+.clearfix:after{
+    content: " ";
+    display: table;
+}
+
+.clearfix:after{
+    clear: both;
+}
+
+
+/* ============
+    浏览器更新提示
+   ============*/
+
+.browserupgrade{
+    margin: 0;
+    padding: 1rem;
+    background: #ccc;
+}
+
+
+/* ============
+    头部样式
+   ============*/
+
+body{
+    margin: 0 auto;
+    width: 70%;
+}
+
+header{
+    width: 90%;
+    margin: 4rem auto;
+    border-bottom: 1px solid #cccccc;
+}
+
+header .site-name h1{
+    margin-bottom: 1rem;
+    font-size: 4rem;
+    text-shadow: 5px 5px 5px #cccccc;
+}
+
+header .site-name p{
+    margin-left: 1rem;
+    font-size: 1.5rem;
+}
+
+header .nav ul {
+    float: right;
+}
+
+header .nav ul li{
+    float: left;
+}
+
+header .nav ul .not-active:hover{
+    border-bottom: 1px solid;
+    margin-bottom: -1px;
+}
+
+header .nav ul .active{
+    border: 1px solid #cccccc;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+}
+
+header .nav ul li a{
+    display: inline-block;
+    text-decoration: none;
+    margin: 1rem 1.5rem;
+    font-size: 1.5rem;
+    color: #222222;
+}
+
+
+header .nav ul li a img{
+    vertical-align: bottom;
+}
+
+
+/* ============
+    内容左半部分
+   ============*/
+
+
+.contains{
+    width: 90%;
+    margin: 4rem auto 2rem;
+}
+
+.contains .content{
+    width: 77%;
+    float: left;
+    border-bottom: 1px solid #cccccc;
+    margin: 0;
+    padding: 0;
+}
+
+.contains .content .info{
+    margin: 1rem 0;
+}
+
+.contains .content .info h2 a{
+    font-size: 2.5rem;
+    color: #222222;
+    text-decoration: none;
+}
+
+.contains .content .info span{
+    font-size: 1.4rem;
+    color: #a0a0a0;
+}
+
+.contains .content .info span img{
+    vertical-align: bottom;
+}
+
+.contains .content .info p{
+    font-size: 1.5rem;
+    padding: 0 4rem 0 0;
+    word-spacing: 0.05rem;
+    /*text-indent: 3rem;*/
+    line-height: 180%;
+}
+
+.contains .content .info .readall{
+    text-decoration: none;
+    color: #a0a0a0;
+    display: block;
+    float: right;
+    border: 1px solid #cccccc;
+    font-size: 1.3rem;
+    margin: 0 5rem 1rem 0;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+}
+
+.contains .content .info .readall:hover{
+    color: #b3d4fc;
+}
+
+/* ============
+    分页栏
+   ============*/
+
+.pagination{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.pagination .page{
+    width: 77%;
+    text-align: center;
+    border: 1px solid #cccccc;
+    background: #ececec;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.pagination .page ul{
+    display: block;
+    /*padding: 1rem;*/
+}
+
+.pagination .page ul span a.previous{
+    display: block;
+    font-size: 1.8rem;
+    text-decoration: none;
+    vertical-align: center;
+    float: left;
+    margin-left: 2rem;
+}
+
+.pagination .page ul span a.next{
+    display: block;
+    font-size: 1.8rem;
+    text-decoration: none;
+    vertical-align: center;
+    float: right;
+    margin-right: 2rem;
+}
+
+.pagination .page ul li{
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.pagination .page ul li a{
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: #253837;
+    margin: 0 0.2rem;
+    padding: 0.1rem;
+}
+
+.pagination .page ul li .current-page{
+    color: #ff9900;
+}
+
+/* ============
+    内容右半部分
+   ============*/
+
+.contains .tagging{
+    width: 21%;
+    float: left;
+    border-left: 1px solid #cccccc;
+    margin: 0 auto;
+    padding: 0;
+    font-size: 1.5rem;
+
+}
+
+.contains .tagging .search{
+    margin: 0 0 2rem 3rem;
+    width: 80%;
+}
+
+.contains .tagging .search form input{
+    display: block;
+    border-radius: 2px;
+}
+
+.contains .tagging .tag-name{
+    border-bottom: 1px solid #cccccc;
+    padding: 1rem 1rem 1rem 0;
+}
+
+.contains .tagging .tag-name img{
+    vertical-align: bottom;
+    margin: 0 0.5rem 0 0;
+}
+
+.contains .tagging .category{
+    margin: 0 0 2rem 3rem;
+    width: 80%;
+}
+
+.contains .tagging .category a{
+    display: block;
+    text-decoration: none;
+    margin: 1rem 0;
+}
+
+.contains .tagging .tags{
+    margin: 0 0 2rem 3rem;
+    width: 80%;
+}
+
+.contains .tagging .tags a{
+    display: inline-block;
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+.contains .tagging .hot-article{
+    margin: 0 0 2rem 3rem;
+    width: 80%;
+}
+
+.contains .tagging .hot-article ul li a{
+    display: block;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+.contains .tagging .friend-link{
+    margin: 0 0 2rem 3rem;
+    width: 80%;
+}
+
+.contains .tagging .friend-link ul li a{
+    display: block;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+
+/* ============
+    底部样式
+   ============*/
+
+footer{
+    font-size: 1.2rem;
+    margin-top: 4rem;
+}
+
+footer .copyright{
+    text-align: center;
+}
+
+footer .copyright span{
+    display: block;
+    margin-top: 1rem;
+}
+
+footer .icon-link{
+
+}
+
+
+
+
+
+/*===========
+  内容页面样式
+ ============*/
+
+.contains .content .info span a{
+    text-decoration: none;
+    color: #a0a0a0;
+}
+
+.contains .content .recording{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contains .content .recording .attribution{
+
+}
+
+.contains .content .recording .attribution ul{
+    float: left;
+}
+
+.contains .content .recording .attribution ul li{
+    float: left;
+    margin-right: 1rem;
+}
+
+.contains .content .recording .attribution ul li a{
+    text-decoration: none;
+}
+
+.contains .content .recording .attribution ul li img{
+    vertical-align: bottom;
+}
+
+.contains .content .recording .share{
+    margin-right: 4rem;
+}
+
+.contains .content .recording .share a{
+    float: right;
+    text-decoration: none;
+}
+
+.contains .content .recording .share a img{
+    vertical-align: bottom;
+}
+
+.contains .content .index{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contains .content .index .before{
+    float: left;
+}
+
+.contains .content .index .before a{
+    text-decoration: none;
+}
+
+.contains .content .index .after{
+    float: right;
+    margin-right: 4rem;
+}
+
+.contains .content .index .after a{
+    text-decoration: none;
+}
+
+
+/*===========
+  关于我页面样式
+ ============*/
+
+.contains .content .info ul{
+    font-size: 1.5rem;
+}
+
+.contains .content .info ul li{
+    margin: 2rem 2rem 2rem 0;
+}
+
+.contains .content .info ul li img{
+    vertical-align: bottom;
+}
+
+.contains .content .info ul li a{
+    text-decoration: none;
+    color: #ff9900;
+
+}
+
+
+/*===========
+  归档页面样式
+ ============*/
+
+.contains .content .sort h2{
+    font-size: 2rem;
+}
+
+.contains .content .sort h2 a{
+    text-decoration: none;
+}
+
+.contains .content .sort ul{
+    font-size: 1.5rem;
+}
+
+.contains .content .sort ul li{
+    margin: 2rem 2rem 2rem 0;
+}
+
+.contains .content .sort ul li a{
+    text-decoration: none;
+}
+
+
+/*===========
+  留言页面样式
+ ============*/
+
+.content .user-message textarea{
+    resize: none;
+}
+
+.content .user-message button{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

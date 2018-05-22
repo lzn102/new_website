@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% load staticfiles %}
+{% load review_extras %}
+
+{% block pagename %}
+    <title>归档</title>
+{% endblock %}
+
+{% block content %}
+    <div class="content clearfix">
+        <div class="sort clearfix">
+            {% for year in years %}
+            <h2><a>{{ year }}</a></h2>
+            <ul>
+                {% for article in year|article_date %}
+                <li><a href="{% url 'blog:content' article.id %}">{{ article }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
